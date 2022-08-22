@@ -16,5 +16,6 @@ public interface CompanyService {
 
     CompanyModel updateCompany(String companyId, UpdateCompanyDataDTO updateCompanyDataDTO);
 
+    CompanyModel deleteCompany(String companyId);
 
 }

@@ -5,14 +5,16 @@ import com.stefanini.StefaniniFood.dto.company.CompanyRequestDTO;
 import com.stefanini.StefaniniFood.dto.company.UpdateCompanyDataDTO;
 import com.stefanini.StefaniniFood.exceptions.CompanyAlreadyExistsException;
 import com.stefanini.StefaniniFood.exceptions.CompanyNotFoundException;
+import com.stefanini.StefaniniFood.exceptions.ProductNotFoundException;
 import com.stefanini.StefaniniFood.model.CompanyModel;
+import com.stefanini.StefaniniFood.model.ProductModel;
 import com.stefanini.StefaniniFood.repository.CompanyRepository;
 import com.stefanini.StefaniniFood.service.CompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.time.Instant;
-import java.util.Calendar;
+
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -21,11 +23,13 @@ import java.util.UUID;
 public class CompanyServiceImpl implements CompanyService {
 
     private CompanyRepository companyRepository;
+    private PasswordEncoder passwordEncoder;
 
 
     @Autowired
-    public CompanyServiceImpl(CompanyRepository companyRepository ){
+    public CompanyServiceImpl(CompanyRepository companyRepository, PasswordEncoder passwordEncoder ){
         this.companyRepository = companyRepository;
+        this.passwordEncoder = passwordEncoder;
 
     }
 
@@ -42,7 +46,7 @@ public class CompanyServiceImpl implements CompanyService {
         var companyModel = new CompanyModel();
         companyModel.setName(companyRequestDTO.getName());
         companyModel.setEmail(companyRequestDTO.getEmail());
-        companyModel.setPassword(companyRequestDTO.getPassword());
+        companyModel.setPassword(passwordEncoder.encode(companyRequestDTO.getPassword()));
         companyModel.setCellphone(companyRequestDTO.getCellphone());
         companyModel.setCnpj(companyRequestDTO.getCnpj());
         companyModel.setLogin(companyRequestDTO.getLogin());
@@ -92,5 +96,16 @@ public class CompanyServiceImpl implements CompanyService {
 
        this.companyRepository.save(company);
        return company;
+    }
+
+    @Override
+    public CompanyModel deleteCompany(String companyId) {
+        var companyAlreadyExists = this.companyRepository.findById(UUID.fromString(companyId));
+        if(companyAlreadyExists.isEmpty()){
+            throw new CompanyNotFoundException("Estabelecimento não encontrado!");
+        }
+
+        this.companyRepository.deleteById(companyAlreadyExists.get().getId());
+        return null;
     }
 }

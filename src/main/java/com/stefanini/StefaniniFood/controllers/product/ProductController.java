@@ -25,21 +25,21 @@ public class ProductController {
         this.productService = ProductService;
     }
 
-    @ApiOperation("This method is used to save a product.")
+    @ApiOperation("Este método é usado para salvar um produto.")
     @PostMapping("/{companyId}")
     public ResponseEntity<ProductResponseDTO> saveProduct(@RequestBody @Valid ProductRequestDTO product, @PathVariable String companyId) {
         ProductModel productSaved = this.productService.saveProduct(product, companyId.toString());
         return ResponseEntity.status(HttpStatus.CREATED).body(ProductResponseDTO.convertToDto(productSaved));
     }
 
-    @ApiOperation("This method is used to list a product's data by id.")
+    @ApiOperation("Este método é usado para listar um produto a partir de seu id.")
     @GetMapping("/get/{productId}")
     public ResponseEntity<ProductResponseDTO> getProduct(@PathVariable String productId) {
         ProductModel product = this.productService.getProduct(productId);
         return ResponseEntity.status(HttpStatus.OK).body(ProductResponseDTO.convertToDto(product));
     }
 
-    @ApiOperation("This method is used to list a company products by company id.")
+    @ApiOperation("Este método é usado para listar produtos de um estabelecimento a partir do id do estabelecimento.")
     @GetMapping("/searchProducts/{companyId}")
     public ResponseEntity<List<ProductResponseDTO>> listProductByCompanyId(@PathVariable String companyId) {
         List<ProductModel> productList = this.productService.listProductByCompanyId(companyId);
@@ -50,7 +50,7 @@ public class ProductController {
         return ResponseEntity.status(HttpStatus.OK).body(responseList);
     }
 
-    @ApiOperation("This method is used to update a product's data.")
+    @ApiOperation("Este método é usado para atualizar dados de um produto.")
     @PutMapping("/{productId}")
     public ResponseEntity<ProductResponseDTO> updateProduct(@RequestBody @Valid UpdateProductDTO productDTO,
                                                             @PathVariable String productId) {
@@ -59,7 +59,7 @@ public class ProductController {
         return ResponseEntity.status(HttpStatus.OK).body(ProductResponseDTO.convertToDto(product));
     }
 
-    @ApiOperation("This method is used to delete a product")
+    @ApiOperation("Este método é usado para deletar um produto.")
     @DeleteMapping("delete/{productId}")
     public ResponseEntity<ProductResponseDTO> deleteProduct(@PathVariable String productId) {
 
