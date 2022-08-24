@@ -12,6 +12,20 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 public class SecurityConfiguration {
 
+    private static final String[] AUTH_WHITELIST = {
+            // -- Swagger UI v2
+            "/v2/api-docs",
+            "/swagger-resources",
+            "/swagger-resources/**",
+            "/configuration/ui",
+            "/configuration/security",
+            "/swagger-ui.html",
+            "/webjars/**",
+            "/v3/api-docs/**",
+            "/swagger-ui/**",
+            "/swagger-ui.html"
+            // other public endpoints of your API may be appended to this array
+    };
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
@@ -27,6 +41,13 @@ public class SecurityConfiguration {
                 .antMatchers(HttpMethod.POST, "/products/**").permitAll()
                 .antMatchers(HttpMethod.GET, "/productsSearch/**").permitAll()
                 .antMatchers(HttpMethod.DELETE, "/products/**").permitAll()
+                .antMatchers(HttpMethod.PATCH, "/products/**").permitAll()
+                .antMatchers(HttpMethod.GET, "/employees/**").permitAll()
+                .antMatchers(HttpMethod.POST, "/employees/**").permitAll()
+                .antMatchers(HttpMethod.GET, "/employessSearch/**").permitAll()
+                .antMatchers(HttpMethod.DELETE, "/employees/**").permitAll()
+                .antMatchers(HttpMethod.PATCH, "/employees/**").permitAll()
+                .antMatchers(AUTH_WHITELIST).permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .csrf().disable();

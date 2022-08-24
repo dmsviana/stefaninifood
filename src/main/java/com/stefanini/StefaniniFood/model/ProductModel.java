@@ -1,6 +1,8 @@
 package com.stefanini.StefaniniFood.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -34,10 +36,11 @@ public class ProductModel {
 
     @Column(nullable = false)
     private boolean active;
-
-    @ManyToOne
-    @JoinColumn(nullable = false, name = "company_id", referencedColumnName = "id")
+    @JsonIgnore()
+    @JoinColumn(name = "company_id", referencedColumnName = "id")
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private CompanyModel company;
+
 
 
 }

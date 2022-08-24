@@ -51,7 +51,7 @@ public class ProductController {
     }
 
     @ApiOperation("Este método é usado para atualizar dados de um produto.")
-    @PutMapping("/{productId}")
+    @PatchMapping("/{productId}")
     public ResponseEntity<ProductResponseDTO> updateProduct(@RequestBody @Valid UpdateProductDTO productDTO,
                                                             @PathVariable String productId) {
 

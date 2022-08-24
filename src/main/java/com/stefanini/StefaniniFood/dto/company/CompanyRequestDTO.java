@@ -1,5 +1,7 @@
 package com.stefanini.StefaniniFood.dto.company;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.stefanini.StefaniniFood.model.ProductModel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -7,6 +9,7 @@ import lombok.NoArgsConstructor;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -53,6 +56,8 @@ public class CompanyRequestDTO {
     private String number;
 
     private String referencePoint;
+
+    private List<ProductModel> products;
 
 }
 

@@ -5,9 +5,7 @@ import com.stefanini.StefaniniFood.dto.company.CompanyRequestDTO;
 import com.stefanini.StefaniniFood.dto.company.UpdateCompanyDataDTO;
 import com.stefanini.StefaniniFood.exceptions.CompanyAlreadyExistsException;
 import com.stefanini.StefaniniFood.exceptions.CompanyNotFoundException;
-import com.stefanini.StefaniniFood.exceptions.ProductNotFoundException;
 import com.stefanini.StefaniniFood.model.CompanyModel;
-import com.stefanini.StefaniniFood.model.ProductModel;
 import com.stefanini.StefaniniFood.repository.CompanyRepository;
 import com.stefanini.StefaniniFood.service.CompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,9 +30,6 @@ public class CompanyServiceImpl implements CompanyService {
         this.passwordEncoder = passwordEncoder;
 
     }
-
-
-
 
     @Override
     public CompanyModel saveCompany(CompanyRequestDTO companyRequestDTO) {
@@ -78,6 +73,7 @@ public class CompanyServiceImpl implements CompanyService {
 
     @Override
     public List<CompanyModel> listAllCompany() {
+
         return this.companyRepository.findAll();
     }
 

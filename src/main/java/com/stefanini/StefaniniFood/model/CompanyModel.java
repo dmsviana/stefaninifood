@@ -1,6 +1,7 @@
 package com.stefanini.StefaniniFood.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -67,8 +68,7 @@ public class CompanyModel {
     @Column
     private String referencePoint;
 
-    @OneToMany(mappedBy = "company")
-    private List<ProductModel> produtos = new ArrayList<>();
-
+    @OneToMany(cascade = {CascadeType.REFRESH,CascadeType.REMOVE}, fetch = FetchType.LAZY, mappedBy="company")
+    private List<ProductModel> products;
 
 }

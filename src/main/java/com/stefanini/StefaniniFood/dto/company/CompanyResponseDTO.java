@@ -3,10 +3,12 @@ package com.stefanini.StefaniniFood.dto.company;
 
 
 import com.stefanini.StefaniniFood.model.CompanyModel;
+import com.stefanini.StefaniniFood.model.ProductModel;
 import lombok.Getter;
 import lombok.Setter;
 
 
+import java.util.List;
 import java.util.UUID;
 
 @Getter
@@ -26,6 +28,7 @@ public class CompanyResponseDTO {
     private String district;
     private String number;
     private String referencePoint;
+    private List<ProductModel> products;
 
 
     public static CompanyResponseDTO convertToDto(CompanyModel company){
@@ -44,6 +47,8 @@ public class CompanyResponseDTO {
         companyResponseDTO.setDistrict(company.getDistrict());
         companyResponseDTO.setNumber(company.getNumber());
         companyResponseDTO.setReferencePoint(company.getReferencePoint());
+
+        companyResponseDTO.setProducts(company.getProducts());
 
 
         return companyResponseDTO;

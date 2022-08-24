@@ -4,7 +4,6 @@ import com.stefanini.StefaniniFood.exceptions.BadRequestException;
 import com.stefanini.StefaniniFood.exceptions.CompanyAlreadyExistsException;
 import com.stefanini.StefaniniFood.exceptions.CompanyNotFoundException;
 import org.springframework.http.HttpStatus;
-import org.springframework.security.authentication.InternalAuthenticationServiceException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.MissingRequestHeaderException;
 import org.springframework.web.bind.annotation.ExceptionHandler;

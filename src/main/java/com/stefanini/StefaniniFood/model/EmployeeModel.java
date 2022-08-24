@@ -1,9 +1,7 @@
 package com.stefanini.StefaniniFood.model;
 
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.Type;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
@@ -14,8 +12,9 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "funcionario")
-public class FuncionarioModel {
+@EntityListeners(AuditingEntityListener.class)
+@Table(name = "employee")
+public class EmployeeModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -39,6 +38,12 @@ public class FuncionarioModel {
 
     @Column(nullable = false, unique = true)
     private String password;
+
+    @ManyToOne
+    @JoinColumn(nullable = false, name = "company_id", referencedColumnName = "id")
+    private CompanyModel company;
+
+
 
 
 }

@@ -88,15 +88,7 @@ public class ProductServiceImpl implements ProductService {
         if (productAlreadyExists.isEmpty()) {
             throw new ProductNotFoundException("Produto não encontrado!");
         }
-        List<ProductModel> productList = this.productRepository.findByCompanyId(
-                productAlreadyExists.get().getCompany().getId());
-        if (!productList.isEmpty()) {
-            for (ProductModel productModel : productList) {
-                if (Objects.equals(productModel.getProductName(), productAlreadyExists.get().getProductName())) {
-                    throw new ProductAlreadyExistsException("Produto já cadastrado! Tente novamente mudando o nome do produto");
-                }
-            }
-        }
+
 
         var product = productAlreadyExists.get();
 
