@@ -4,10 +4,7 @@ package com.stefanini.StefaniniFood.controllers.employee;
 import com.stefanini.StefaniniFood.dto.employee.EmployeeRequestDTO;
 import com.stefanini.StefaniniFood.dto.employee.EmployeeResponseDTO;
 import com.stefanini.StefaniniFood.dto.employee.UpdateEmployeeDTO;
-import com.stefanini.StefaniniFood.dto.product.ProductResponseDTO;
-import com.stefanini.StefaniniFood.dto.product.UpdateProductDTO;
 import com.stefanini.StefaniniFood.model.EmployeeModel;
-import com.stefanini.StefaniniFood.model.ProductModel;
 import com.stefanini.StefaniniFood.service.impl.EmployeeServiceImpl;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +22,6 @@ public class EmployeeController {
 
     private EmployeeServiceImpl employeeService;
 
-    @Autowired
     public EmployeeController(EmployeeServiceImpl employeeService) {
         this.employeeService = employeeService;
     }
@@ -76,8 +72,5 @@ public class EmployeeController {
         return ResponseEntity.status(HttpStatus.OK).body(EmployeeResponseDTO.convertToDto(employee));
 
     }
-
-
-
 
 }

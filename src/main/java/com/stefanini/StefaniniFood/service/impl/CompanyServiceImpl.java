@@ -54,11 +54,7 @@ public class CompanyServiceImpl implements CompanyService {
         companyModel.setNumber(companyRequestDTO.getNumber());
         companyModel.setReferencePoint(companyRequestDTO.getReferencePoint());
 
-        CompanyModel savedCompany = this.companyRepository.save(companyModel);
-
-
-
-        return this.companyRepository.save(savedCompany);
+        return this.companyRepository.save(companyModel);
 
     }
 
