@@ -11,7 +11,9 @@
 ### Features
 
 - [x] Cadastro de estabelecimentos
+- [x] Cadastro de empregados 
 - [x] Cadastro de produtos
+- [ ] Cadastro de pedidos
 
 ### 🛠 Tecnologias
 
