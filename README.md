@@ -10,9 +10,9 @@
 
 ### Features
 
-- [x] Cadastro de estabelecimentos
-- [x] Cadastro de empregados 
-- [x] Cadastro de produtos
+- [x] CRUD de estabelecimentos
+- [x] CRUD de empregados 
+- [x] CRUD de produtos
 - [ ] Cadastro de pedidos
 
 ### 🛠 Tecnologias
